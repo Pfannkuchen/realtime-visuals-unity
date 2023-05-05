@@ -16,7 +16,7 @@ public class ShaderMusic : MonoBehaviour
     [SerializeField] private List<Renderer> _affectedRenderers;
     private List<Renderer> AffectedRenderers => _affectedRenderers ??= new List<Renderer>();
     
-    [SerializeField] private string _shaderProperty = "_SliderValue";
+    [SerializeField] private string _shaderProperty = "_MusicValues";
 
     private float[] _samples = new float[512];
     private float[] _freqBands = new float[4];
@@ -83,11 +83,11 @@ public class ShaderMusic : MonoBehaviour
         return new Vector4(_freqBands[0], _freqBands[1], _freqBands[2], _freqBands[3]);
     }
     
-    public float GetBand(int band)
+    public float GetBand(int in_band)
     {
-        if(band < 0 || band > 7) return 0;
+        if(in_band < 0 || in_band > 7) return 0;
         
-        return _freqBands[band];
+        return _freqBands[in_band];
     }
     
     public float GetAverageBand()
